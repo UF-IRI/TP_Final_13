@@ -1,13 +1,13 @@
-# TP Final - Grupo `XX`
+# TP Final - Grupo `13`
 ### Consigna
-    Consigna del TP Final
+    Desarrollar un programa que lee un archivo de pacientes y se clasifique 
 ### Descripción
-    Descripción del proyecto
+    Es un programa que busca hallar los pacientes que retornar despues de haber faltado a la consulta.
 ### Integrantes
-- Integrante 1
-- Integrante 2
-- Integrante 3
-- Integrante 4
+- Isabella Anna Forte
+- Micaela Rivero Diaz
+- Mayra Ruiz
+- Maria Paula Salas Bravo
 ### Compilaciones
 [![Ubuntu](https://github.com/UF-IRI/TP_Final/actions/workflows/ubuntu.yml/badge.svg)](https://github.com/UF-IRI/TP_Final/actions/workflows/ubuntu.yml)
 ### Unit Tests
