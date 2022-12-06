@@ -1,8 +1,6 @@
 #include "gmock/gmock.h"
 #include "filtro.h"
 #include "filtro.cpp"
-#include "secretaria.cpp"
-#include "secretaria.h"
 
 namespace casos_filtro_secretaria::tests
 {
@@ -225,24 +223,4 @@ namespace casos_filtro_secretaria::tests
 		EXPECT_THAT(op, -1);
 	}
 
-	/*TEST(PruebaBusquedaDni, DniNoExistente) {
-		string dni = 0;
-		Retornantes* lista = new Retornantes[1];
-		lista[0].dni = dni;
-		int result = buscarPaciente(lista, 1);
-		ASSERT_EQ(result, -1);
-	}
-	TEST(PruebaBusquedaDni, DniPosicion) {
-		string dni = "31";
-		Retornantes* lista = new Retornantes[1];
-		lista[0].dni = dni;
-		int result = buscarPaciente(lista, 1);
-		ASSERT_EQ(result, 2);
-	}
-	TEST(PruebaBusquedaDni, DniNegativo) {
-		int dni = -11;
-		Retornantes* lista = new Retornantes[1];
-		lista[0].dni = dni;
-		int result = buscarPaciente(lista, );
-	}*/
 }

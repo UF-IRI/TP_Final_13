@@ -58,6 +58,5 @@ struct RetornantesStruct
 	int mesturno;
 	int anioturno;
 	string turno;
-
 };
 typedef RetornantesStruct Retornantes;

@@ -6,7 +6,7 @@
 #include <fstream>
 
 
-int mainSecretria(string pahtPosiblesRetornantes) {
+int mainSecretria(string pahtPosiblesRetornantes, string pathRetornantesConfirmados) {
 	ifstream posiblesRetornantes;
 	Retornantes* listaPosiblesReotrnantes = new Retornantes[0];
 	Retornantes aux;
@@ -29,11 +29,10 @@ int mainSecretria(string pahtPosiblesRetornantes) {
 		while (getline(streamLinea, registro[campo++], ',')) {
 		}
 		aux = crearRetornantes(registro);
-		cout << "\nfila:" << campo << " dni:" << aux.dni << " nombre:" << aux.nombre;
 		agregarPacientes(listaPosiblesReotrnantes, aux, &tam);
 	}
 	posiblesRetornantes.close();
-	secretaria(listaPosiblesReotrnantes, tam);
+	secretaria(listaPosiblesReotrnantes, tam,pathRetornantesConfirmados);
 	delete[]listaPosiblesReotrnantes;
 	return 0;
 }
@@ -49,9 +48,11 @@ void agregarPacientes(Retornantes*& listaPosiblesretornantes, Retornantes aux, i
 	delete[]listaPosiblesretornantes;
 	listaPosiblesretornantes = listaAux;
 }
-void secretaria(Retornantes*& listaPosiblesReotrnantes, int tam) {
+void secretaria(Retornantes*& listaPosiblesReotrnantes, int tam, string pathRetornantesConfirmados) {
 	int opcion, posicion;
+	string dni;
 	mostrarMenu();
+
 	while (cin >> opcion && opcion != 3) {
 		
 		switch (opcion)
@@ -60,8 +61,10 @@ void secretaria(Retornantes*& listaPosiblesReotrnantes, int tam) {
 			imprimirLista(listaPosiblesReotrnantes, tam);
 			break;
 		case 2:
-			posicion = buscarPaciente(listaPosiblesReotrnantes, tam);
-			retornates(listaPosiblesReotrnantes, tam, posicion);
+			cout << "\nIngrese el DNI del paciente: " << endl;
+			cin >> dni;
+			posicion = buscarPaciente(listaPosiblesReotrnantes, tam,dni);
+			retornates(listaPosiblesReotrnantes, tam, posicion, pathRetornantesConfirmados);
 			break;
 		default:
 			cout << "Opci'on incorrecta. Pulse 3 para salir";
@@ -90,13 +93,9 @@ void imprimirLista(Retornantes*& listaPosiblesReotrnantes, int tam) {
 }
 
 
-int buscarPaciente(Retornantes*& listaPosiblesRetornantes, int tam) {
+int buscarPaciente(Retornantes*& listaPosiblesRetornantes, int tam, string dni) {
 	int posicion, i;
 	posicion = 0;
-	string dni;
-	cout << "\nIngrese el DNI del paciente: " << endl;
-	cin >> dni;
-
 	for (i = 0; i < tam; i++) {
 		if (listaPosiblesRetornantes[i].dni == dni) {
 			posicion = i;
@@ -111,20 +110,18 @@ int buscarPaciente(Retornantes*& listaPosiblesRetornantes, int tam) {
 }
 
 
-void retornates(Retornantes*& listaPosiblesRetornates, int tam, int posicion) {
+void retornates(Retornantes*& listaPosiblesRetornates, int tam, int posicion, string pathRetornantesConfirmados) {
 	int respuestaRetorna;
 	int respuestaNuevaConsulta;
 	int largo = 0;
 	string nuevafecha;
-	string pacienteRetorna = R"(paciente_retorna.csv)";
-	string pacienteArchivado = R"(paciente_archivado.csv)";
-
+	
 	Retornantes* listaArchivados = new Retornantes[0];
 	Retornantes noRetorna;
 
 
 	cout << " " << listaPosiblesRetornates[posicion].nombre << " " << listaPosiblesRetornates[posicion].apellido << " " << listaPosiblesRetornates[posicion].celular << " " << listaPosiblesRetornates[posicion].telefono << endl;
-	cout << " " << listaPosiblesRetornates[posicion].diaturno << " " << listaPosiblesRetornates[posicion].mesturno << " " << listaPosiblesRetornates[posicion].anioturno << endl;
+	cout << " " << listaPosiblesRetornates[posicion].turno << endl;
 
 	do {
 		cout << "¿El paciente desea retornar?" << endl;
@@ -174,6 +171,7 @@ void retornates(Retornantes*& listaPosiblesRetornates, int tam, int posicion) {
 				}
 
 			} while (respuestaNuevaConsulta != 1 && respuestaNuevaConsulta != 2);
+			grabarRetornantes(listaPosiblesRetornates[posicion], pathRetornantesConfirmados);
 		}
 		else
 		{
@@ -194,3 +192,23 @@ Retornantes crearRetornantes(string* registro) {
 	return aux;
 }
 
+void inicializarArchivoRetornantes(string retornantesConfirmados){
+	char comma = ',';
+	ofstream retornantesConf;
+	retornantesConf.open(retornantesConfirmados);
+	if (!(retornantesConf.is_open())) {
+		cout << "El Archivo no se encontro";
+	}
+	retornantesConf << "Dni" << comma << "Nombre" << comma << "Apellido" << comma << "ObraSocial" << comma << "Celular" << comma << "Telefono" << comma << "fechaTurno" << endl;
+	retornantesConf.close();
+}
+void grabarRetornantes(Retornantes confirmado, string retornantesConfirmados) {
+	char comma = ',';
+	ofstream retornantesConf;
+	retornantesConf.open(retornantesConfirmados,ios::app);
+	if (!(retornantesConf.is_open())) {
+		cout << "El Archivo no se encontro";
+	}
+	retornantesConf << confirmado.dni << comma << confirmado.nombre << comma << confirmado.apellido << comma << confirmado.obraSocial << comma << confirmado.celular << comma << confirmado.telefono << comma << confirmado.turno << endl;
+	retornantesConf.close();
+}
