@@ -93,7 +93,7 @@ void imprimirLista(Retornantes*& listaPosiblesReotrnantes, int tam) {
 int buscarPaciente(Retornantes*& listaPosiblesRetornantes, int tam) {
 	int posicion, i;
 	posicion = 0;
-	int dni;
+	string dni;
 	cout << "\nIngrese el DNI del paciente: " << endl;
 	cin >> dni;
 
@@ -115,7 +115,7 @@ void retornates(Retornantes*& listaPosiblesRetornates, int tam, int posicion) {
 	int respuestaRetorna;
 	int respuestaNuevaConsulta;
 	int largo = 0;
-	int dia, mes, anio;
+	string nuevafecha;
 	string pacienteRetorna = R"(paciente_retorna.csv)";
 	string pacienteArchivado = R"(paciente_archivado.csv)";
 
@@ -147,11 +147,10 @@ void retornates(Retornantes*& listaPosiblesRetornates, int tam, int posicion) {
 		else if (respuestaRetorna == 1)
 		{
 			cout << "Ingrese dia, mes y año de la nueva consulta";
-			cin >> dia >> mes >> anio;
+			cin >> nuevafecha;
 			string obrasocial;
-			listaPosiblesRetornates[posicion].diaturno = dia;
-			listaPosiblesRetornates[posicion].mesturno = mes;
-			listaPosiblesRetornates[posicion].anioturno = anio;
+			listaPosiblesRetornates[posicion].turno = nuevafecha;
+
 
 			do {
 				cout << "¿El paciente sigue teniendo la misma cobertura medica? " << endl;
@@ -185,15 +184,13 @@ void retornates(Retornantes*& listaPosiblesRetornates, int tam, int posicion) {
 
 Retornantes crearRetornantes(string* registro) {
 	Retornantes aux;
-	aux.dni = stoi(registro[0]);
+	aux.dni = registro[0];
 	aux.nombre = registro[1];
 	aux.apellido = registro[2];
 	aux.obraSocial = registro[3];
 	aux.celular = registro[4];
 	aux.telefono = registro[5];
-	aux.diaturno = stoi(registro[6]);
-	aux.mesturno = stoi(registro[7]);
-	aux.anioturno = stoi(registro[8]);
+	aux.turno = registro[6];
 	return aux;
 }
 

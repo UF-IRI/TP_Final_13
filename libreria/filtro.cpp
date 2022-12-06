@@ -1,4 +1,4 @@
-/*#include <filtro.h>
+#include <filtro.h>
 
 int filtro(string path1, string path2, string path3)
 {
@@ -24,7 +24,6 @@ int filtro(string path1, string path2, string path3)
         if (lista1[i].presento == false)//filtro por ausencias en las consultas.
         {
             lista2 = resize1(lista2, lista1[i], &tam2); //copio en la lista2 solo aquellos pacientes que no asistieron a su ultima consulta
-
         }
     }
 
@@ -127,10 +126,12 @@ Retornantes* unionListas(Consultas*& lista1, int* tam1, Pacientes*& lista2, int*
 
 int escribir(Retornantes*& lista, int k)
 {
+    if (lista == nullptr)
+        return -1;
     ofstream fp;
     char comma = ',';
     char slash = '/';
-    fp.open("..\..\..\..\data_files\output\Retornantes.csv"); //checkear path
+    fp.open("..\\..\\..\\..\\data_files\\output\\Retornantes.csv"); //checkear path
     if (!(fp.is_open()))
         return -1;
     int i = 0;
@@ -146,6 +147,8 @@ int escribir(Retornantes*& lista, int k)
 
 Consultas* resize1(Consultas*& lista_, Consultas aux, int* tamactual)
 {
+    if (lista_ == nullptr)
+        return lista_;
     *tamactual += 1;
     Consultas* listaAux = new Consultas[*tamactual];
 
@@ -159,6 +162,8 @@ Consultas* resize1(Consultas*& lista_, Consultas aux, int* tamactual)
 }
 Pacientes* resize2(Pacientes*& lista_, Pacientes aux, int* tamactual)
 {
+    if (lista_ == nullptr)
+        return lista_;
     *tamactual += 1;
     Pacientes* listaAux = new Pacientes[*tamactual];
 
@@ -173,6 +178,8 @@ Pacientes* resize2(Pacientes*& lista_, Pacientes aux, int* tamactual)
 }
 Contactos* resize3(Contactos*& lista_, Contactos aux, int* tamactual)
 {
+    if (lista_ == nullptr)
+        return lista_;
     *tamactual += 1;
     Contactos* listaAux = new Contactos[*tamactual];
 
@@ -187,6 +194,8 @@ Contactos* resize3(Contactos*& lista_, Contactos aux, int* tamactual)
 }
 Retornantes* resize4(Retornantes*& lista_, Retornantes aux, int* tamactual)
 {
+    if (lista_ == nullptr)
+        return lista_;
     *tamactual += 1;
     Retornantes* listaAux = new Retornantes[*tamactual];
 
@@ -201,6 +210,8 @@ Retornantes* resize4(Retornantes*& lista_, Retornantes aux, int* tamactual)
 
 int Archivo1(Consultas*& lista, int* tam1, string path)
 {
+    if (lista == nullptr)
+        return -1;
     string dummy;
     char comma = ',';
     char slash = '/';
@@ -209,7 +220,7 @@ int Archivo1(Consultas*& lista, int* tam1, string path)
     Consultas* lista_aux = new Consultas[0];
     int tam = 0;
 
-    fp.open(path);
+    fp.open(path); //cambio de path a "..."
     if (!(fp.is_open()))
         return -1;
     fp >> dummy >> comma >> dummy >> comma >> dummy >> comma >> dummy >> comma >> dummy;
@@ -235,6 +246,8 @@ int Archivo1(Consultas*& lista, int* tam1, string path)
 }
 int Archivo2(Pacientes*& lista, int* tam1, string path)
 {
+    if (lista == nullptr)
+        return -1;
     string dummy;
     char comma = ',';
     ifstream fp;
@@ -295,7 +308,6 @@ int Archivo3(Contactos*& lista, int* tam1, string path)
 
 }
 
-
 Consultas* tiempo(Consultas*& lista2, int* tamactual)
 {
     Consultas aux;
@@ -351,12 +363,9 @@ Consultas* tiempo(Consultas*& lista2, int* tamactual)
     {
         fecha1 = (double)mktime(&lista[i].fechaTurno);
         fechaactual = (double)time(NULL);
-
         contxdni = 0;
-
         if (i == 0)
         {
-
             for (j = 0; j < tam; j++)
             {
                 if (!(fecha1 < fechaactual))
@@ -367,7 +376,6 @@ Consultas* tiempo(Consultas*& lista2, int* tamactual)
                 }
             }
 
-
             if (contxdni == 1)
             {
                 lista_ultconsultas = resize1(lista_ultconsultas, lista[i], &tam_ult);
@@ -377,14 +385,12 @@ Consultas* tiempo(Consultas*& lista2, int* tamactual)
                 for (j = i; j < i + contxdni; j++)
                 {
                     fecha2 = (double)mktime(&lista[j].fechaTurno);
-
                     if (j == i || fecha2 > max)
                     {
                         max = fecha2;
                         posmax = j;
                     }
                 }
-
                 lista_ultconsultas = resize1(lista_ultconsultas, lista[posmax], &tam_ult);
             }
         }
@@ -411,7 +417,6 @@ Consultas* tiempo(Consultas*& lista2, int* tamactual)
                 for (j = i; j < i + contxdni; j++)
                 {
                     fecha2 = (double)mktime(&lista[j].fechaTurno);
-
                     if (j == i || fecha2 > max)
                     {
                         max = fecha2;
@@ -435,4 +440,4 @@ Consultas* tiempo(Consultas*& lista2, int* tamactual)
     
     return lista_ultconsultas;
 
-}*/
+}

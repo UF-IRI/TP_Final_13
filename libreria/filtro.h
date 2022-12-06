@@ -1,4 +1,4 @@
-/*#pragma once
+#pragma once
 #include <iostream> 
 #include <string>
 #include <fstream>
@@ -16,4 +16,4 @@ Contactos* resize3(Contactos*& lista_, Contactos aux, int* tamactual);
 Retornantes* resize4(Retornantes*& lista_, Retornantes aux, int* tamactual);
 Retornantes* unionListas(Consultas*& lista1, int* tam1, Pacientes*& lista2, int* tam2, Contactos*& lista3, int* tam3, int* tam4);
 int escribir(Retornantes*& lista, int k);
-Consultas* tiempo(Consultas*& lista2, int* tamactual);*/
+Consultas* tiempo(Consultas*& lista2, int* tamactual);
