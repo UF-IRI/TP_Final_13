@@ -39,7 +39,7 @@ namespace casos_filtro_secretaria::tests
 
 		ptr = unionListas(con, &tam1, pac, &tam2, ctos, &tam3, &tam4);
 
-		ASSERT_THAT(tam4, 2);
+		ASSERT_THAT(tam4, 5);
 
 	}
 
@@ -62,10 +62,11 @@ namespace casos_filtro_secretaria::tests
 		ASSERT_THAT(op, 0);
 
 	}
-	
+
 	TEST(escribir, prueba)
 	{
-		Retornantes* ptr;
+		Retornantes* ptr = new Retornantes;
+
 		ptr->diaturno = 14;
 		ptr->mesturno = 5;
 		ptr->anioturno = 2020;
@@ -80,7 +81,7 @@ namespace casos_filtro_secretaria::tests
 		op = escribir(ptr, 1);
 
 		EXPECT_THAT(op, 0);
-
+		delete ptr;
 	}
 
 	TEST(cantidad_final, Archivo1)
@@ -92,7 +93,7 @@ namespace casos_filtro_secretaria::tests
 		op = Archivo1(ptr, &tam, path);
 
 		EXPECT_THAT(tam, 1001);
-		
+
 		int tam1 = 0;
 		Consultas* ptr1;
 		string path1 = "..\\..\\..\\..\\data_files\\input\\PruebaConsultas.csv";
@@ -243,4 +244,5 @@ namespace casos_filtro_secretaria::tests
 		Retornantes* lista = new Retornantes[1];
 		lista[0].dni = dni;
 		int result = buscarPaciente(lista, );
-    }*/
+	}*/
+}

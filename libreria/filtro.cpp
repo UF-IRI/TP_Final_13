@@ -279,6 +279,8 @@ int Archivo2(Pacientes*& lista, int* tam1, string path)
 }
 int Archivo3(Contactos*& lista, int* tam1, string path)
 {
+    if (lista == nullptr)
+        return -1;
     string dummy;
     char comma = ',';
     ifstream fp;
@@ -310,6 +312,8 @@ int Archivo3(Contactos*& lista, int* tam1, string path)
 
 Consultas* tiempo(Consultas*& lista2, int* tamactual)
 {
+    if (lista2 == nullptr)
+        return lista2;
     Consultas aux;
     int tam = 0;
     int tam_ult = 0;
