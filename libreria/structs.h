@@ -1,9 +1,10 @@
 #pragma once
 #include <string>
+#include <time.h>
 using namespace std;
 
 struct PacientesStruct {
-	int dni;
+	string dni;
 	string nombre;
 	string apellido;
 	char sexo;
@@ -15,7 +16,7 @@ typedef PacientesStruct Pacientes;
 
 struct ContactosStruct
 {
-	int dniPaciente;
+	string dniPaciente;
 	string telefono;
 	string celular;
 	string direccion;
@@ -25,16 +26,10 @@ typedef ContactosStruct Contactos;
 
 struct ConsultasStruct
 {
-	int dni;
-	int diaTurno;
-	int mesTurno;
-	int anioTurno;
-
-	int diaSolicitado;
-	int mesSolicitado;
-	int anioSolicitado;
-
-	int presento;
+	string dniPaciente;
+	struct tm fechaTurno;
+	string fechaSolicitado;
+	bool presento;
 	string matriculaMedico;
 };
 typedef ConsultasStruct Consultas;
@@ -53,7 +48,7 @@ typedef MedicosStruct Medicos;
 
 struct RetornantesStruct
 {
-	int dni;
+	string dni;
 	string nombre;
 	string apellido;
 	string obraSocial;

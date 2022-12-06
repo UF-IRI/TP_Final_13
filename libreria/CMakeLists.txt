@@ -1,6 +1,6 @@
 ## >>>>>>>>>>>>>>>
 ## >>>>>>>>>>>>>>>
-add_library(libreria dummy.cpp "secretaria.cpp" "structs.h")
+add_library(libreria dummy.cpp "secretaria.cpp" "structs.h" "filtro.h" "filtro.cpp")
 ## <<<<<<<<<<<<<<<
 ## <<<<<<<<<<<<<<<
 
