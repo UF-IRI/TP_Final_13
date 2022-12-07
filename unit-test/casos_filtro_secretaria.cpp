@@ -152,6 +152,17 @@ namespace casos_filtro_secretaria::tests
 
 		EXPECT_THAT(op, nullptr);
 	}
+	TEST(funcion_caso_nullptr, unionlistas)
+	{
+		Consultas* ptr1 = nullptr;
+		Pacientes* ptr2 = nullptr;
+		Contactos* ptr3 = nullptr;
+		Retornantes* ptr;
+		int tam1, tam2, tam3, tam4;
+		tam1 = tam2 = tam3 = tam4 = 0;
+		ptr = unionListas(ptr1, &tam1, ptr2, &tam2, ptr3, &tam3, &tam4);
+		EXPECT_THAT(ptr, nullptr);
+	}
 	TEST(funcion_caso_nullptr, resize1)
 	{
 		Consultas* ptr = nullptr;

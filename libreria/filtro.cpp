@@ -82,6 +82,12 @@ int filtro(string path1, string path2, string path3)
 }
 Retornantes* unionListas(Consultas*& lista1, int* tam1, Pacientes*& lista2, int* tam2, Contactos*& lista3, int* tam3, int* tam4)
 {
+    if (lista1 == nullptr || lista2 == nullptr || lista3 == nullptr)
+    {
+        Retornantes* ptr = nullptr;
+        return ptr;
+    }
+
     int i, j, k;
     string dni;
     Retornantes* listaf = new Retornantes[0];
@@ -131,7 +137,7 @@ int escribir(Retornantes*& lista, int k)
     ofstream fp;
     char comma = ',';
     char slash = '/';
-    fp.open("..\\..\\..\\..\\data_files\\output\\Retornantes.csv"); //checkear path
+    fp.open("..\\..\\..\\..\\data_files\\output\\Retornantes.csv"); 
     if (!(fp.is_open()))
         return -1;
     int i = 0;

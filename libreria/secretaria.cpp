@@ -76,7 +76,7 @@ void secretaria(Retornantes*& listaPosiblesReotrnantes, int tam, string pathReto
 void mostrarMenu() {
 	cout << "MENU" << endl;
 	cout << "ingrese una opcion: " << endl;
-	cout << "1) Mostrar la lista de pacientes retornantes" << "\n2) Bucacar al paciente " << endl;
+	cout << "1) Mostrar la lista de pacientes retornantes" << "\n2) Buscar al paciente " << endl;
 	cout << "3) Cerrar el programa" << endl;
 }
 
